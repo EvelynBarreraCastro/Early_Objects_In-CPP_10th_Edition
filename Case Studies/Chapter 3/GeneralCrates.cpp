@@ -1,9 +1,12 @@
-// This program is used by General Crates, Inc. to calculate
-// the volume, cost, customer charge, and profit of any crate
-// to be built, when given its dimensions.
+/* 
+	This program is used by General Crates, Inc. to calculate
+	the volume, cost, customer charge, and profit of any crate
+	to be built, when given its dimensions.
+*/
 
 #include <iostream>
 #include <iomanip>
+#include <string> 
 using namespace std;
 
 int main()
@@ -16,6 +19,7 @@ int main()
 	       charge,   // customer charge for the crate
 	       profit;   // profit made on the crate 
 
+	// Ensures that every output after here has a setprecision with 2
 	cout << fixed << showpoint << setprecision(2);
 
 	// Get crate dimensions
