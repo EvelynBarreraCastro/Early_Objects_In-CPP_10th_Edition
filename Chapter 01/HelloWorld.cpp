@@ -1,11 +1,12 @@
-// Simple Hello World Program in CPP
+// Simple Hello World Program in C++
 
-#include <iostream> 
-using namespace std;
+#include <iostream>  // preprocessor directive
+using namespace std; 
 
-int main () {
-
-cout <<"Hello World!" << endl; 
+int main () 
+{
+    // the user will see this output
+    cout << "Hello World!" << endl; 
 
     return 0; 
 }
