@@ -1,5 +1,6 @@
 // This program displays the user's name surrounded by stars.
 // It uses the + operator and several string class member functions.
+
 #include <iostream>
 #include <string>       // Header file needed to use string objects
 using namespace std;

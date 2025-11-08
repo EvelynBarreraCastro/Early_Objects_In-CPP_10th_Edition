@@ -1,7 +1,8 @@
 // This program demonstrates the setw manipulator
 // being used with variables of various data types. 
+
 #include <iostream>
-#include <iomanip>        // Header file needed to use setw
+#include <iomanip>        // Header file needed to use setw()
 #include <string>         // Header file needed to use string objects
 using namespace std;
 

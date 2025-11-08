@@ -1,4 +1,5 @@
-// This program displays the decimal value of a fraction. 
+// This program displays the decimal value of a fraction.
+
 #include <iostream>
 using namespace std;
 
@@ -16,5 +17,6 @@ int main()
 	
 	// Compute and display the decimal value
 	cout << "The decimal value is "<< (numerator / denominator) << endl;
+	
 	return 0;
 }

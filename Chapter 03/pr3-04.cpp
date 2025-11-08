@@ -1,5 +1,6 @@
 // This program demonstrates how cin can read multiple values
 // of different data types.
+
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,7 @@ int main()
 
 	cout << "Enter an integer, a double, and a character: ";
 	cin  >> whole >> fractional >> letter;
+	cout << endl;
 
 	cout << "whole: " << whole << endl;
 	cout << "fractional: " << fractional << endl;

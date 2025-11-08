@@ -1,4 +1,5 @@
 // This program prints a character from its ASCII code.
+
 #include <iostream>
 using namespace std;
 
@@ -9,8 +10,9 @@ int main()
 	// Display the value of the number variable 
 	cout << number << endl;
 
-	// Use a type cast to display the value of number 
-	// converted to the char data type
+	// Use a type cast to display the value of number from the ASCII code
+	// converted from int --> char datatype
 	cout << static_cast<char>(number) << endl;
+	
 	return 0;
 }

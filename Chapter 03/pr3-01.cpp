@@ -1,4 +1,5 @@
 // This program calculates and displays the area of a rectangle.
+
 #include <iostream>
 using namespace std;
 
@@ -17,5 +18,6 @@ int main()
 	// Compute and display the area
 	area = length * width;
 	cout << "The area of the rectangle is " << area << endl;
+	
 	return 0;
 }

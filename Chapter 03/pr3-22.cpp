@@ -1,5 +1,6 @@
 // This program demonstrates three ways to use cin.get()
 // to pause a program.
+
 #include <iostream>
 using namespace std;
 
@@ -17,5 +18,6 @@ int main()
 	cin.get();
 	
 	cout << "Thank you! \n";
+	
 	return 0;
 }

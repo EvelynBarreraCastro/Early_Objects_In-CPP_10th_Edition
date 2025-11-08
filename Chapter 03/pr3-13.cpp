@@ -1,6 +1,8 @@
 // This program uses setw to display three rows of numbers so they align.
+// Same infromation as pr3-12 but shows an efficient way to format. 
+
 #include <iostream>
-#include <iomanip>        // Header file needed to use setw
+#include <iomanip>        // Header file needed to use setw() --> set width
 using namespace std;
 
 int main()

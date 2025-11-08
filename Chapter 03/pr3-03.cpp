@@ -1,4 +1,5 @@
 // This program calculates and displays the area of a rectangle.
+
 #include <iostream>
 using namespace std;
 

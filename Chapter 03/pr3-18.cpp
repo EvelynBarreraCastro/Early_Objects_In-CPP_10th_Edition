@@ -1,4 +1,5 @@
 // This program illustrates the use of the left and right manipulators.
+
 #include <iostream>
 #include <iomanip>        // Header file needed to use stream manipulators
 #include <string>         // Header file needed to use string objects
@@ -21,10 +22,12 @@ int main()
 	cout << fixed << showpoint << setprecision(1);
 	cout << "Month        Days    High\n";
 
-	cout << left  << setw(12) << month1 
+	cout << left << setw(12) << month1 
 		 << right << setw(4)  << days1 << setw(9) << high1 << endl;
+
 	cout << left  << setw(12) << month2 
 		 << right << setw(4)  << days2 << setw(9) << high2 << endl;
+
 	cout << left  << setw(12) << month3 
 	     << right << setw(4)  << days3 << setw(9) << high3 << endl;
 

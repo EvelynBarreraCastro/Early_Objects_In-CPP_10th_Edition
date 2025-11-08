@@ -1,5 +1,6 @@
 //	This program asks for sales figures for three days. 
 //	The total sales are calculated and displayed in a table.
+
 #include <iostream>
 #include <iomanip>       // Header file needed to use stream manipulators
 using namespace std;
@@ -27,5 +28,6 @@ int main()
 	cout << "Day 2: " << setw(8) << day2 << endl;
 	cout << "Day 3: " << setw(8) << day3 << endl;
 	cout << "Total: " << setw(8) << total << endl;
+	
 	return 0;
 }

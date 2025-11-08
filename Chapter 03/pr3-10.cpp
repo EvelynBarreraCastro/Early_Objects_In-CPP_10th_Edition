@@ -1,7 +1,8 @@
 // This program calculates the area of a circle. The formula for the 
 // area of a circle is PI times the radius squared. PI is 3.14159.
+
 #include <iostream>
-#include <cmath>                 // Needed for the pow function
+#include <cmath>                 // Needed for the pow()
 using namespace std;
 
 int main()
@@ -16,7 +17,9 @@ int main()
    cin  >> radius;
 	
    // Compute and display the area
+   // (Area = PI * R^2)
    area = PI * pow(radius, 2);
    cout << "The area is " << area << endl;
+   
    return 0;
 }
