@@ -1,5 +1,6 @@
 // This program demonstrates cin's getline function
 // to read a line of text into a C-string.
+
 #include <iostream>
 using namespace std;
 
