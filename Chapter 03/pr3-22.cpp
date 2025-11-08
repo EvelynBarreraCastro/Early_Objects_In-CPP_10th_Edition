@@ -8,6 +8,9 @@ int main()
 {
 	char ch;
 
+	/* 
+		cin.get(ch); and ch = cin.get(); perform the same function
+	*/
 	cout << "This program has paused. Press Enter to continue.";
 	cin.get(ch);
 	
@@ -18,6 +21,6 @@ int main()
 	cin.get();
 	
 	cout << "Thank you! \n";
-	
+
 	return 0;
 }
