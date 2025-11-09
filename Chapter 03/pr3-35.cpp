@@ -1,7 +1,8 @@
 // This program uses strings to play a word game.
-#include <iostream>
-#include <string>
-using namespace std;
+
+#include <iostream>		// input & output streaming 
+#include <string>		// allows for strings 
+using namespace std;	// namespace standard library 
 
 int main()
 {	// Stored strings
@@ -23,6 +24,8 @@ int main()
 	string name, city, activity, animal, product, petName;
 	int age, kids;
 	
+	// prompts unser for information to create a short story.
+	// Note they all use the function getline(cin, x) to store infromation from user. 
 	cout << "Enter the following information and I\'ll "
 	     << "tell you a story.\n\n";
 	cout << "Your name: ";
@@ -49,6 +52,7 @@ int main()
 	cout << "A number between 0 and 15: ";
 	cin  >> kids;
 
+	// the followong allows for the user to see the story, using the infromation they fed into the program.
 	cout << endl << s1 << name << s2 << city << s3 << activity;
 	cout << s4 << age << s5 << name << s6 << product << s7;
 	cout << name << s8 << kids << s9 << animal << s10 << petName;

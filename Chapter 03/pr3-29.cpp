@@ -1,5 +1,6 @@
 // This program inputs the lengths of the two sides of a right 
 // triangle, then calculates and displays the length of the hypotenuse. 
+
 #include <iostream>
 #include <cmath>        // Header file needed to use the sqrt function
 using namespace std;
@@ -15,6 +16,7 @@ int main()
 	cin  >> b;
 	
 	// Compute and display the length of the hypotenuse
+	// c = sqaure root of a^2 + b^2
 	c = sqrt(pow(a, 2.0) + pow(b, 2.0));
 	
 	cout << "The length of the hypotenuse is ";

@@ -9,8 +9,10 @@ int main()
 	const int SIZE = 81;
 	char sentence[SIZE];
 
-	cout << "Enter a sentence: ";
-	cin.getline(sentence, SIZE);
+	cout << "Enter a sentence: ";	// Prompts user for a sentence
+	cin.getline(sentence, SIZE);	// reads in sentence but only with the capacity of 81 memmory cells
+
 	cout << "You entered " << sentence << endl;
+
 	return 0;
 }

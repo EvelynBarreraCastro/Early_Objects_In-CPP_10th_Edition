@@ -1,5 +1,6 @@
 // This program demonstrates using the C++ time function
 // to provide a "seed" for the random number generator.
+
 #include <iostream>
 #include <cstdlib>       // Header file needed to use srand and rand
 #include <ctime>         // Header file needed to use time

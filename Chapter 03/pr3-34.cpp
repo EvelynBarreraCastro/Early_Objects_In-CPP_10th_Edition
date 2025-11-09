@@ -1,5 +1,6 @@
 // This program is used by Green Fields Landscaping to compute the 
 // number of cubic yards of mulch a customer needs and its price.
+
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -32,5 +33,6 @@ int main()
 	    << PRICE_PER_CUBIC_YD << endl;
    cout << "Total price:          $" << setw(7)
 	    << totalPrice << endl << endl;
+
    return 0;
 }
