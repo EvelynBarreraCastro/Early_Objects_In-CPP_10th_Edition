@@ -1,4 +1,5 @@
 // This program displays the values C++ uses to represent true and false.
+
 #include <iostream>
 using namespace std;
 
@@ -10,7 +11,7 @@ int main()
 	trueValue = (x < y);
 	falseValue = (y == x);
 	
-	cout << "True  is " << trueValue << endl;
-	cout << "False is " << falseValue << endl;
+	cout << "True  is " << trueValue << endl;		// trueValue == ( 5 < 10) --> True --> 1
+	cout << "False is " << falseValue << endl;		// falseValue == ( 5 = 10) --> False --> 0
 	return 0;
 }

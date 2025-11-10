@@ -2,6 +2,7 @@
 // it has a bug. It illustrates what happens when  
 // the assignment operator (=)is used instead of the 
 // equal-to relational operator (==) in an if test.
+
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -21,7 +22,7 @@ int main()
 	cout << "Your average is " << average << endl;
 
 	// If the average equals 100, congratulate the user
-	if (average = 100)        // Error. This assigns 100 to average. 
+	if (average = 100)        // Error. This assigns 100 to average. it should be ---> (average == 100)
 	{
 		cout << "Congratulations! ";
 		cout << "That's a perfect score!\n";

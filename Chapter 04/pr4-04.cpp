@@ -1,5 +1,6 @@
 // This program makes sure that the divisor is not 
 // equal to 0 before it performs a divide operation.
+
 #include <iostream>
 using namespace std;
 

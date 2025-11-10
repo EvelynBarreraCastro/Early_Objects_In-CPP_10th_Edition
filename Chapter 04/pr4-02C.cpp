@@ -2,6 +2,7 @@
 // has a bug. It illustrates what happens when braces 
 // are omitted from an if statement that is supposed to 
 // conditionally execute more than one statement.
+
 #include <iostream>
 #include <iomanip>
 using namespace std;

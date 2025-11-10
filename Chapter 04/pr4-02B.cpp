@@ -1,6 +1,7 @@
 // This program tries to average 3 test scores, but it
 // has a bug. It illustrates how an incorrectly placed 
 // semicolon can prematurely terminate an if statement.
+
 #include <iostream>
 #include <iomanip>
 using namespace std;

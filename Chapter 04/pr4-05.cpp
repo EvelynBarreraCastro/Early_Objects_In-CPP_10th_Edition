@@ -1,5 +1,6 @@
 // This program demonstrates how a lack of precision in 
 // floating-point numbers can make equality comparisons unreliable.
+
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,7 @@ int main()
 	cout << "result = " << result << endl;
 
 	// However, internally result is NOT precisely equal to 4.
+	// Interally result is equal to 4.000002
 	if (result == 4.0)
 		cout << "result DOES equal 4!" << endl;
 	else
