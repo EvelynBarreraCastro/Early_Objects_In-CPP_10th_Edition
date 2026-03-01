@@ -1,0 +1,87 @@
+// ============================================================================
+// CLASS: Node
+// ============================================================================
+// Represents a node in the Adaptive Huffman tree
+// Members: number (int), weight (int), parent (Node*), left_child (Node*), 
+//          right_child (Node*), symbol (char), is_nyt (bool)
+
+
+// ============================================================================
+// CLASS: AdaptiveHuffman
+// ============================================================================
+
+// CONSTRUCTOR: AdaptiveHuffman(string alphabet)
+// - Store alphabet and create set for validation
+// - Check for duplicates, throw exception if found
+// - Call reset_tree()
+
+// METHOD: reset_tree()
+// - Create NYT node with number = alphabet_size * 2, weight = 0
+// - Set root = NYT
+// - Clear symbol_to_node map
+// - Initialize current_node_number
+
+// METHOD: encode(string message)
+// - Reset tree
+// - For each character:
+//   - Validate character in alphabet (throw exception if not)
+//   - Get encoding: if symbol exists, get path to root; else get NYT path + fixed code
+//   - Append to result
+//   - Update tree
+// - Return encoded string
+
+// METHOD: decode(string encoded_message)
+// - Validate only '0' and '1' characters
+// - Reset tree
+// - While not at end:
+//   - Traverse tree following bits until reaching leaf
+//   - If NYT: read fixed-length code, convert to symbol
+//   - Else: use leaf's symbol
+//   - Validate symbol in alphabet
+//   - Update tree
+// - Return decoded string
+
+// METHOD: update_tree(char symbol)
+// - If first occurrence: spawn_new_node(symbol)
+// - Else: increment_and_update(node)
+
+// METHOD: spawn_new_node(char symbol)
+// - Replace old NYT with internal node
+// - Create new NYT as left child
+// - Create new leaf for symbol as right child
+// - Update maps and pointers
+// - Increment and update from internal node
+
+// METHOD: increment_and_update(Node* node)
+// - While node not null:
+//   - Find highest numbered node with same weight
+//   - Swap if needed (not self or parent)
+//   - Increment weight
+//   - Move to parent
+
+
+// ============================================================================
+// MAIN DRIVER
+// ============================================================================
+
+// - Validate 3 command line arguments
+// - Read alphabet from file, process escape sequences
+// - Read message from file
+// - Create AdaptiveHuffman object
+// - If encode: output to filename.encoded
+// - If decode: output to filename.decoded
+
+
+// ============================================================================
+// EXTRA CREDIT
+// ============================================================================
+
+// encode_to_binary_file():
+// - Pad bits to multiple of 8
+// - Convert bit string to bytes
+// - Write padding count + bytes to binary file
+
+// decode_from_binary_file():
+// - Read padding count
+// - Read bytes and convert to bit string
+// - Remove padding bits

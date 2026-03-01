@@ -1,0 +1,299 @@
+// ============================================================================
+// ADAPTIVE HUFFMAN ALGORITHM - PSEUDOCODE/COMMENTS ONLY
+// ============================================================================
+
+// ============================================================================
+// CLASS: Node
+// ============================================================================
+// Purpose: Represents a single node in the Adaptive Huffman tree
+
+// MEMBER VARIABLES:
+// - number: integer representing node order (for sibling property)
+// - weight: integer representing frequency/count
+// - parent: pointer to parent Node
+// - left_child: pointer to left child Node
+// - right_child: pointer to right child Node
+// - symbol: character stored in leaf (null/empty for internal nodes)
+// - is_nyt: boolean flag indicating if this is the NYT (Not Yet Transmitted) node
+
+// METHODS:
+// - is_leaf(): returns true if node has no children
+// - is_internal(): returns true if node has children
+
+
+// ============================================================================
+// CLASS: AdaptiveHuffman
+// ============================================================================
+// Purpose: Main class implementing Adaptive Huffman encoding/decoding
+
+// MEMBER VARIABLES:
+// - alphabet: string containing all valid characters
+// - alphabet_set: set/hash set for O(1) character validation
+// - root: pointer to root Node of the tree
+// - nyt: pointer to current NYT node
+// - symbol_to_node: map/dictionary mapping characters to their leaf Nodes
+// - current_node_number: integer for assigning node numbers (decrements)
+
+// CONSTRUCTOR: AdaptiveHuffman(string alphabet)
+// - Store the alphabet string
+// - Create alphabet_set from alphabet for fast lookups
+// - Verify no duplicate characters in alphabet (throw exception if duplicates)
+// - Call reset_tree() to initialize tree structure
+
+// METHOD: reset_tree()
+// Purpose: Initialize/reset tree to starting state with single NYT node
+// - Create new NYT node
+// - Set NYT node number to (alphabet_size * 2)
+// - Set NYT weight to 0
+// - Set NYT is_nyt flag to true
+// - Set root pointer to NYT node
+// - Clear symbol_to_node map
+// - Set current_node_number to (alphabet_size * 2 - 1)
+
+
+// ============================================================================
+// ENCODING METHODS
+// ============================================================================
+
+// METHOD: encode(string message)
+// Purpose: Encode entire message using Adaptive Huffman
+// Returns: string of '0' and '1' characters
+// - Call reset_tree() to start fresh
+// - Initialize empty result string for encoded bits
+// - For each character in message:
+//   - Verify character exists in alphabet_set (throw exception if not)
+//   - Call encode_symbol(character) to get bit string
+//   - Append bit string to result
+//   - Call update_tree(character) to update tree structure
+// - Return result string
+
+// METHOD: encode_symbol(char symbol)
+// Purpose: Get encoding for a single symbol
+// Returns: string of '0' and '1' bits
+// - Check if symbol exists in symbol_to_node map:
+//   - IF EXISTS (seen before):
+//     - Get node from map
+//     - Call get_path_to_root(node) to get bit path
+//     - Return the path
+//   - IF NOT EXISTS (first time):
+//     - Call get_path_to_root(nyt) to get path to NYT node
+//     - Call get_symbol_fixed_code(symbol) to get fixed binary code
+//     - Concatenate NYT path + symbol code
+//     - Return concatenated result
+
+// METHOD: get_path_to_root(Node* node)
+// Purpose: Get binary path from node to root
+// Returns: string of '0' and '1' representing path
+// - Initialize empty list/vector for path
+// - Set current = node
+// - While current has a parent:
+//   - If current is parent's left child, add '0' to path
+//   - Else add '1' to path
+//   - Set current = current's parent
+// - Reverse the path (we built it backwards from node to root)
+// - Convert path list to string and return
+
+// METHOD: get_symbol_fixed_code(char symbol)
+// Purpose: Get fixed-length binary code for symbol based on alphabet position
+// Returns: string of '0' and '1'
+// - Find index of symbol in alphabet string
+// - Calculate bits_needed = ceiling(log2(alphabet.size()))
+// - Convert index to binary with bits_needed digits
+// - Return binary string
+
+
+// ============================================================================
+// DECODING METHODS
+// ============================================================================
+
+// METHOD: decode(string encoded_message)
+// Purpose: Decode entire encoded message
+// Returns: decoded string
+// - Validate encoded_message contains only '0' and '1' (throw exception if not)
+// - Call reset_tree() to start fresh
+// - Initialize empty result string for decoded message
+// - Set position = 0 (current position in encoded_message)
+// - While position < length of encoded_message:
+//   - Call decode_symbol(encoded_message, position) to get (symbol, new_position)
+//   - Verify symbol exists in alphabet_set (throw exception if not)
+//   - Append symbol to result string
+//   - Call update_tree(symbol) to update tree
+//   - Set position = new_position
+// - Return result string
+
+// METHOD: decode_symbol(string encoded_message, int start_pos)
+// Purpose: Decode one symbol starting from given position
+// Returns: pair/tuple of (symbol, new_position)
+// - Set current = root
+// - Set pos = start_pos
+// - While current is not a leaf:
+//   - If pos >= message length, throw exception (unexpected end)
+//   - Read bit at encoded_message[pos]
+//   - Increment pos
+//   - If bit is '0', set current = current's left child
+//   - Else set current = current's right child
+// - Check if current is NYT node:
+//   - IF NYT:
+//     - Calculate bits_needed = ceiling(log2(alphabet.size()))
+//     - If pos + bits_needed > message length, throw exception
+//     - Extract bits_needed bits starting at pos
+//     - Convert extracted bits to integer (symbol_index)
+//     - If symbol_index >= alphabet size, throw exception
+//     - Get symbol = alphabet[symbol_index]
+//     - Set pos = pos + bits_needed
+//   - ELSE (existing symbol):
+//     - Set symbol = current's symbol
+// - Return (symbol, pos)
+
+
+// ============================================================================
+// TREE UPDATE METHODS (Used by both encode and decode)
+// ============================================================================
+
+// METHOD: update_tree(char symbol)
+// Purpose: Update tree structure after processing a symbol (FGK algorithm)
+// - Check if symbol exists in symbol_to_node map:
+//   - IF NOT EXISTS (first occurrence):
+//     - Call spawn_new_node(symbol)
+//   - ELSE (already exists):
+//     - Get node from symbol_to_node map
+//     - Call increment_and_update(node)
+
+// METHOD: spawn_new_node(char symbol)
+// Purpose: Create new nodes when symbol appears for first time
+// - Save old_nyt = current nyt pointer
+// - Create new internal node:
+//   - Set number = old_nyt's number
+//   - Set weight = 0
+//   - Set parent = old_nyt's parent
+//   - Update parent's child pointer (if parent exists, else update root)
+// - Create new NYT node (will be left child):
+//   - Set is_nyt = true
+//   - Set number = current_node_number
+//   - Decrement current_node_number
+//   - Set weight = 0
+//   - Set parent = internal node
+// - Create new leaf node for symbol (will be right child):
+//   - Set symbol = symbol
+//   - Set number = current_node_number
+//   - Decrement current_node_number
+//   - Set weight = 0
+//   - Set parent = internal node
+// - Set internal node's left_child = new NYT
+// - Set internal node's right_child = new leaf
+// - Update nyt pointer to new NYT
+// - Add (symbol -> leaf) to symbol_to_node map
+// - Call increment_and_update(internal node)
+
+// METHOD: increment_and_update(Node* node)
+// Purpose: Increment weight and propagate updates using sibling property
+// - While node is not null:
+//   - Call find_highest_numbered_node(node) to get swap_node
+//   - If swap_node != node AND swap_node != node's parent:
+//     - Call swap_nodes(node, swap_node)
+//   - Increment node's weight by 1
+//   - Set node = node's parent
+
+// METHOD: find_highest_numbered_node(Node* node)
+// Purpose: Find node with highest number among all nodes with same weight
+// Returns: pointer to node with highest number and same weight as input
+// - Set target_weight = node's weight
+// - Set highest = node
+// - Create queue for tree traversal
+// - Add root to queue
+// - While queue is not empty:
+//   - Remove current node from queue
+//   - If current's weight == target_weight AND
+//      current's number > highest's number AND
+//      current is not NYT:
+//     - Set highest = current
+//   - Add current's children to queue (if they exist)
+// - Return highest
+
+// METHOD: swap_nodes(Node* node1, Node* node2)
+// Purpose: Swap positions of two nodes in tree
+// - Swap node1's number with node2's number
+// - Save parent1 = node1's parent
+// - Save parent2 = node2's parent
+// - Update parent1's child pointer:
+//   - If parent1 exists:
+//     - If node1 was left child, set parent1's left_child = node2
+//     - Else set parent1's right_child = node2
+//   - Else (node1 was root): set root = node2
+// - Update parent2's child pointer:
+//   - If parent2 exists:
+//     - If node2 was left child, set parent2's left_child = node1
+//     - Else set parent2's right_child = node1
+//   - Else (node2 was root): set root = node1
+// - Swap node1's parent with node2's parent
+
+
+// ============================================================================
+// MAIN DRIVER PROGRAM
+// ============================================================================
+
+// FUNCTION: main(int argc, char* argv[])
+// Purpose: Command line driver program
+// - Check if argc == 4 (throw error if not)
+// - Parse argv[1] as operation ("encode" or "decode")
+// - Parse argv[2] as alphabet_filename
+// - Parse argv[3] as message_filename
+// - Validate operation is "encode" or "decode" (throw error if not)
+// - Try-catch block:
+//   - Open alphabet_filename and read line
+//   - Call process_escape_sequences() on line to get alphabet
+//   - Create AdaptiveHuffman object with alphabet
+//   - Open message_filename and read contents into message string
+//   - If operation == "encode":
+//     - Call huffman.encode(message) to get encoded string
+//     - Create output_filename = message_filename + ".encoded"
+//     - Write encoded string to output_filename
+//     - Print success message with statistics
+//   - Else (operation == "decode"):
+//     - Call huffman.decode(message) to get decoded string
+//     - Create output_filename = message_filename + ".decoded"
+//     - Write decoded string to output_filename
+//     - Print success message with statistics
+//   - Catch file not found errors and print error message
+//   - Catch other exceptions and print error message
+
+// FUNCTION: process_escape_sequences(string text)
+// Purpose: Convert escape sequences in alphabet string to actual characters
+// Returns: processed string
+// - Replace "\\\\" with temporary placeholder (to handle backslash first)
+// - Replace "\\n" with newline character
+// - Replace "\\t" with tab character
+// - Replace "\\r" with carriage return
+// - Replace temporary placeholder with single backslash
+// - Return processed string
+
+
+// ============================================================================
+// EXTRA CREDIT: BINARY FILE I/O
+// ============================================================================
+
+// FUNCTION: encode_to_binary_file(string encoded_bits, string output_file)
+// Purpose: Write encoded bits as actual binary data (compresses file)
+// - Calculate padding = (8 - encoded_bits.length() % 8) % 8
+// - Append padding zeros to encoded_bits
+// - Create byte array
+// - For every 8 bits in padded string:
+//   - Convert 8-bit string to byte value
+//   - Add byte to array
+// - Open output_file in binary write mode
+// - Write 1 byte containing padding count
+// - Write byte array
+// - Close file
+
+// FUNCTION: decode_from_binary_file(string input_file)
+// Purpose: Read binary encoded file and convert to bit string
+// Returns: string of '0' and '1' characters
+// - Open input_file in binary read mode
+// - Read first byte as padding count
+// - Read remaining bytes into array
+// - Close file
+// - For each byte in array:
+//   - Convert byte to 8-character binary string
+//   - Append to result string
+// - If padding > 0, remove last padding characters from result
+// - Return result string

@@ -1,0 +1,47 @@
+/*
+ Data Structure: Adaptive Huffman Tree. (C++)
+    Node: Represents a node in the Huffman tree.
+    - parent: Pointer to parent node
+    - left_child: Pointer to left child node
+    - right_child: Pointer to right child node
+    - symbol: Character represented by leaf node (or null for internal nodes)
+    - weight: Frequency of the symbol(s) in the subtree
+    - order: Unique identifier for ordering nodes (e.g., for sibling property)
+
+    NYT_Node (Not Yet Transmitted): A special node representing unseen symbols.
+*/ 
+
+// Initialize:
+Initialize tree with a single NYT_Node as the root.
+Maintain a mapping from symbol to its corresponding leaf node in the tree.
+
+// Encoding Process:
+FOR each symbol in the input stream:
+    IF symbol is already in the tree (seen before):
+        Get the code for the symbol from the current tree.
+        Output the code.
+        Increment the weight of the symbol's leaf node.
+        Update_Tree(symbol_node) // Adjust tree to maintain sibling property and update ancestor weights.
+    ELSE (symbol is new):
+        Get the code for the NYT_Node from the current tree.
+        Output the code.
+        Output the raw bits for the new symbol (e.g., ASCII value).
+        
+        // Expand NYT_Node:
+        Create a new internal node.
+        Set the NYT_Node as its left child.
+        Create a new leaf node for the current symbol, set its weight to 1, and make it the right child of the new internal node.
+        Update the parent pointers.
+        Replace the old NYT_Node with the new internal node in the tree structure.
+        Update the symbol-to-node mapping for the new symbol.
+        Update_Tree(new_symbol_node) // Adjust tree and update ancestor weights.
+
+// Update_Tree(node):
+FUNCTION Update_Tree(node):
+    WHILE node is not the root:
+        Find the highest-ordered node with the same weight as 'node' and is not an ancestor of 'node'.
+        IF such a node exists AND node is not already in its correct position (e.g., based on order and sibling property):
+            Swap 'node' with this highest-ordered node.
+            Update parent pointers and child relationships after swapping.
+        Increment the weight of 'node'.
+        Set 'node' to its parent.
