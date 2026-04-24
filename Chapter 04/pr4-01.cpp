@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+
+// Inside the main function we see how to logical statments work
 int main()
 {
 	bool trueValue, falseValue;
@@ -11,7 +13,7 @@ int main()
 	trueValue = (x < y);
 	falseValue = (y == x);
 	
-	cout << "True  is " << trueValue << endl;		// trueValue == ( 5 < 10) --> True --> 1
+	cout << "True  is11111 " << trueValue << endl;		// trueValue == ( 5 < 10) --> True --> 1
 	cout << "False is " << falseValue << endl;		// falseValue == ( 5 = 10) --> False --> 0
 	return 0;
 }
