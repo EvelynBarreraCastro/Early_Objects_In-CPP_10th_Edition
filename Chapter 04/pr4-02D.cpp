@@ -1,7 +1,14 @@
-// This program tries to average 3 test scores, but 
-// it has a bug. It illustrates what happens when  
-// the assignment operator (=)is used instead of the 
-// equal-to relational operator (==) in an if test.
+/**
+ * Programmer: Evelyn Barrera Castro
+ * Date: April 28, 2026
+ * Compiler: VSCode 
+ * Description:  This program tries to average 3 test scores, but 
+ * it has a bug. It illustrates what happens when  
+ * the assignment operator (=)is used instead of the 
+ * equal-to relational operator (==) in an if test.
+ * 
+ **/ 
+
 
 #include <iostream>
 #include <iomanip>

@@ -1,8 +1,14 @@
+/**
+ * Programmer: Evelyn Barrera Castro
+ * Date: April 28, 2026
+ * Compiler: VSCode 
+ * Description: This program tries to average 3 test scores, but it 
+				has a bug. It illustrates what happens when braces 
+				are omitted from an if statement that is supposed to 
+				conditionally execute more than one statement.
+ */
 
-//	This program tries to average 3 test scores, but it 
-// has a bug. It illustrates what happens when braces 
-// are omitted from an if statement that is supposed to 
-// conditionally execute more than one statement.
+
 
 #include <iostream>
 #include <iomanip>
