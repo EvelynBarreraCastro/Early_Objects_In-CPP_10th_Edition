@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": ".",
-      "program": "build/Debug/outDebug"
+      "cwd": "extension-output-ms-vscode.cmake-tools-#1-CMake",
+      "program": "extension-output-ms-vscode.cmake-tools-#1-CMake/build/Debug/outDebug"
     }
   ]
 }

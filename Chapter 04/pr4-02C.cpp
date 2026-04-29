@@ -1,3 +1,4 @@
+
 //	This program tries to average 3 test scores, but it 
 // has a bug. It illustrates what happens when braces 
 // are omitted from an if statement that is supposed to 

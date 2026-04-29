@@ -7,6 +7,8 @@ using namespace std;
 
 int main()
 {
+	// assigned the variable "number" to an int datatype
+	// that'll be used to read and store the user's value
 	int number;
 
 	cout << "Enter an integer and I will tell you if it\n";

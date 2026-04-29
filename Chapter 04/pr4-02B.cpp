@@ -1,6 +1,11 @@
-// This program tries to average 3 test scores, but it
-// has a bug. It illustrates how an incorrectly placed 
-// semicolon can prematurely terminate an if statement.
+/**
+ * Programmer: Evelyn Barrera Castro
+ * Date: April 28, 2026
+ * Compiler: VSCode 
+ * Description: This program tries to average 3 test scores, but it
+ * it has a bug. It illustrates how an incorrectly placed 
+ * semicolon can prematurely terminate an if statement.
+ */
 
 #include <iostream>
 #include <iomanip>
@@ -28,3 +33,8 @@ int main()
 	}
 	return 0;
 }
+
+
+
+// However it does run ...
+// Rather the error lies on even when its not a perfect score it sas congratulations
